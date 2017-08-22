@@ -174,7 +174,7 @@ public class GenMajority extends BookKeeper {
       for (CGroup t = groups; t != null; t = t.next) {
         currentcount += t.delta;
         if(currentcount >= ( myN + numberoffakes ) / (double)(myM + 1)) {
-                 System.out.println("at value "+currentcount+" I have added "+numberoffakes+" fakes and theory bound is "+( myN + numberoffakes ) / (double)(myM + 1));
+                 // System.out.println("at value "+currentcount+" I have added "+numberoffakes+" fakes and theory bound is "+( myN + numberoffakes ) / (double)(myM + 1));
                  return currentcount-1;
         }
         // we need to make sure that the number of fakes is sufficient so that the the level

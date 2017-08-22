@@ -29,7 +29,8 @@ public class CGroup {
     
     
     public String toString() {
-        return "Group delta " + delta + ":"+count();
+        return "";
+        //return "Group delta " + delta + ":"+count();
     }
 
 }

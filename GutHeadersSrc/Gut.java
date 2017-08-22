@@ -352,11 +352,11 @@ public class Gut {
         // process command line args  (-l for "lines mode" or -e for "exact counts")
         boolean l = false, ft = false, h=false, fp=false, cs=false, ex=false, cs64=false, gm=false;
 	
-        System.out.println("assuming the text files are in 'data'");
+        // System.out.println("assuming the text files are in 'data'");
         File dataDir = new File("data");
         File [] theFiles = dataDir.listFiles(new FilenameFilter() {
                 public boolean accept( File dir, String name) {
-                    return name.matches("((.*[012][0-9][a-z]?)|(\\d+))\\.txt");
+                    return name.matches("PG123((.*[012][0-9][a-z]?)|(\\d+))\\_raw.txt");
                     // note one of the test set is a "preliminary" version 09.
                 }});        
 
@@ -404,7 +404,7 @@ public class Gut {
 	    /**
 	     * end of experiments to fix c
 	     */
-	    System.out.println("c is " + c);
+	    // System.out.println("c is " + c);
 	}        
 
         BookKeeper bk = null;
@@ -435,11 +435,11 @@ public class Gut {
 
 	if (fp) accurate = new StringCountedSet();
 
-        System.out.println("BookKeeper created: "+bk.toString());
+        //System.out.println("BookKeeper created: "+bk.toString());
         Gut g = new Gut(c,l,bk,accurate, ft,h);
-        System.out.println("Gut created");
+        //System.out.println("Gut created");
         for (File f : theFiles) {
-            System.out.println("Scanning file " + f);
+            // System.out.println("Scanning file " + f);
             g.readAll(f);
             // g.gen.dump();
         }
@@ -448,7 +448,7 @@ public class Gut {
 	// optional report after pass 1
         if( g.gen instanceof GenMajority) 
         {
-          System.err.println("suggested threshold for GenMajority: "+ ((GenMajority) g.gen).suggestThreshold() + " (c="+c+", l = "+l+")");
+          //System.err.println("suggested threshold for GenMajority: "+ ((GenMajority) g.gen).suggestThreshold() + " (c="+c+", l = "+l+")");
 	  //          System.out.println("Press enter to continue");
           //  System.in.read();
         } else if  (g.gen instanceof Crc64CountedSet)   {
@@ -463,8 +463,7 @@ public class Gut {
         for (File f : theFiles) {
             System.out.println("File: "+f);
             System.out.println("last header:"+g.computeLastHeaderLine(f));
-            if (g.processEpilogue) 
-		System.out.println("first footer:"+g.computeFirstFooterLine(f));
+            if (g.processEpilogue) System.out.println("first footer:"+g.computeFirstFooterLine(f));
         }
 
 	// optional reports after pass 2
@@ -478,7 +477,7 @@ public class Gut {
 			       (accurate.truePos() + accurate.trueNeg()) + " total");
 	}
         g.gen.dump();
-        dumpStats();
+        //dumpStats();
 
     }
 
